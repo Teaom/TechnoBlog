@@ -59,3 +59,5 @@ sequelize.sync({ force: false }).then(() => {
 //api routes
 
 //js files for forms
+
+//css styling
