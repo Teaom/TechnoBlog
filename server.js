@@ -58,8 +58,16 @@ sequelize.sync({ force: false }).then(() => {
 // 4. set up views 
 
 // 5. set html routes 
+// homepage routes
+// dashboard routes
+// all current user blog posts
+// add new blog posts
 
 // 6. set up api routes 
+// creating a comment
+// creating new post
+// udpating post
+// deleting post
 
 // 7. set up js files for forms
 
