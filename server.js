@@ -12,7 +12,7 @@ const { fileURLToPath } = require('url');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
@@ -45,15 +45,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log('Now listening on PORT', PORT));
 });
 
 
-// 1. set up models 
+// 1. set up models -
 
-// 2. set up Server
+// 2. set up Server -
 
-// 3. set up seed file 
+// 3. set up seed and run -
 
 // 4. set up views 
 
