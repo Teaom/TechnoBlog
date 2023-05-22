@@ -27,6 +27,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/comments', async (req, res) => {
+  try {
+    // Get all post and JOIN with user data
+    const commentData = await Comment.findAll({
+      });
+
+    // Serialize data so the template can read it
+    const comments = commentData.map((post) => post.get({ plain: true }));
+res.json(comments)
+    // Pass serialized data and session flag into template
+    // res.render('homepage', { 
+    //   posts, 
+    //   logged_in: req.session.logged_in 
+    // });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -70,14 +89,24 @@ router.get('/post/:id', async (req, res) => {
 //   }
 // });
 
-// router.get('/login', (req, res) => {
-//   // If the user is already logged in, redirect the request to another route
-//   if (req.session.logged_in) {
-//     res.redirect('/profile');
-//     return;
-//   }
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
 
-//   res.render('login');
-// });
+  res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup');
+});
 
 module.exports = router;
