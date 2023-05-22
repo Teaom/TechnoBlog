@@ -63,3 +63,5 @@ sequelize.sync({ force: false }).then(() => {
 
 // 7. set up js files for forms
 
+// 8. css styling
+
