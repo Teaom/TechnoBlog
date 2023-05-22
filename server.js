@@ -6,6 +6,9 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
+const { REPL_MODE_SLOPPY } = require('repl');
+const { Server } = require('http');
+const { fileURLToPath } = require('url');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -44,3 +47,19 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+// 1. set up models 
+
+// 2. set up Server
+
+// 3. set up seed file 
+
+// 4. set up views 
+
+// 5. set html routes 
+
+// 6. set up api routes 
+
+// 7. set up js files for forms
+
