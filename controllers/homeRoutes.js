@@ -31,10 +31,16 @@ router.get('/comments', async (req, res) => {
   try {
     // Get all post and JOIN with user data
     const commentData = await Comment.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
       });
 
     // Serialize data so the template can read it
-    const comments = commentData.map((post) => post.get({ plain: true }));
+    const comments = commentData.map((post) => comment.get({ plain: false }));
 res.json(comments)
     // Pass serialized data and session flag into template
     // res.render('homepage', { 
@@ -108,5 +114,10 @@ router.get('/signup', (req, res) => {
 
   res.render('signup');
 });
+
+router.get('/newpost', (req, res) => {
+  res.render('newpost')
+}
+)
 
 module.exports = router;

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+
 router.get('/', async (req, res) => {
     console.log("dashboard" , req.session);
     try {
@@ -11,6 +12,7 @@ router.get('/', async (req, res) => {
             userId: req.session.user_id
         }
       });
+
   
       // Serialize data so the template can read it
       const posts = postData.map((post) => post.get({ plain: true }));
@@ -25,9 +27,9 @@ router.get('/', async (req, res) => {
     }
   });
 
-  router.get('/newPost', withAuth, (req, res) =>{
-    res.render('newPost');
-  });
+  // router.get('/newPost', withAuth, (req, res) =>{
+  //   res.render('newPost');
+  // });
 
   router.get('/edit/:id', withAuth, async (req, res) =>{
     try {
