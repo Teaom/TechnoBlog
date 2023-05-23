@@ -1,17 +1,17 @@
 <div>
-    <nav>
-        <a href="/">Home</a>
-         <a href="/dashboard">Dashboard</a>
-        {{#if logged_in}}
-            <a href="/">Logout</a>
-        {{/if}}
-        {{#unless logged_in}}
-            <a href="/login">Login</a>
-         {{/unless}}
-    </nav>
+ <h2>My Posts</h2>
+    <a href="/newpost">NewPost</a>
+    <a href="/">Home</a>
 
-        {{#each posts}}
-            <h2> {{title}} </h2>
-            <h3> {{body}} </h3>
-        {{/each}}
+  {{#each posts}}
+  <div class="divs">
+    <h2>
+        {{title}}
+    </h2>
+    <h3>
+        {{body}}
+    </h3>
+<h3 id="edits" ><a href="/dashboard/{{id}}/editpost">edit post</a></h3>
+    </div>
+    {{/each}}
 </div>

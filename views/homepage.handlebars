@@ -1,18 +1,25 @@
 <div>
-    <nav>
-        <a href="/">Home</a>
-        {{#if logged_in}}
-        <a href="/dashboard">Dashboard</a>
-            <a href="/">Logout</a>
-        {{/if}}
-        {{#unless logged_in}}
-        <a href="/login">Dashboard</a>
-            <a href="/login">Login</a>
-        {{/unless}}
-    </nav>
-
-        {{#each posts}}
-            <h2> {{title}} </h2>
-            <h3> {{body}} </h3>
-        {{/each}}
+<nav>
+<a href="/">Home</a>
+{{#if logged_in}}
+<a href="/" id="logout"> Logout</a>
+<a href="/dashboard">Dashboard</a>
+<a href="/newpost">NewPost</a>
+{{else}}
+<a href="/login"> Login</a>
+<a href="/signup">SignUp</a>
+{{/if}}
+</nav>
+    {{#each posts}}
+    <div class="divs">
+    <h2>
+        {{title}}
+    </h2>
+    <h3>
+        {{body}}
+    </h3>
+    <a href="/post/{{id}}">comments</a>
+    </div>
+    {{/each}}
 </div>
+<script src="/js/logout.js"></script>
