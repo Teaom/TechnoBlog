@@ -39,7 +39,6 @@ router.get('/', async (req, res) => {
   // res.json(post)
       res.render('editPost', {
         post,
-        logged_in: req.session.logged_in
       });
     } catch (err) {
       res.status(500).json(err);
