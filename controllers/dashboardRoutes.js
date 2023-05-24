@@ -31,20 +31,19 @@ router.get('/', async (req, res) => {
   //   res.render('newPost');
   // });
 
-  router.get('/edit/:id', withAuth, async (req, res) =>{
+  router.get('/:id/editpost', withAuth, async (req, res) => {
     try {
-      const postData = await Post.findByPk(req.params.id, {
-       
-      });
-  
-      const post = postData.get({ plain: true });
-  // res.json(post)
-      res.render('editPost', {
-        post,
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+        const postData = await Post.findByPk(req.params.id, {
+        });
+    
+        const posts = postData.get({ plain: true });
+    // res.json(posts)
+        res.render('editpost', {
+          posts,
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
   });
 
   module.exports = router;
