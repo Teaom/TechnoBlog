@@ -7,10 +7,10 @@ console.log('connected')
 const createCommentHandler = async (event) => {
     event.preventDefault()
 console.log('clicked')
-    const commentContents = document.querySelector('#comment-form').value
-
+    const commentContents = document.querySelector('#comment-input').value
+    console.log("comment content",commentContents)
     if (commentContents) {
-        const response = await fetch(`/api/comment`, {
+        const response = await fetch(`/api/comments`, {
             method: 'POST', 
             body: JSON.stringify({ postId: id, body: commentContents }),
             headers: { 'Content-type': 'application/json' }
@@ -23,6 +23,15 @@ console.log('clicked')
         }
     }
 }
+
+
+const getComments = async() => {
+    console.log(id)
+    const response = await fetch(`/api/comments/${id}`);
+    console.log(response)
+}
+
+getComments();
 
 // Event listener for form submit
 document

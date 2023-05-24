@@ -18,13 +18,19 @@ router.post('/', withAuth, async (req, res) => {
 
   router.get('/:id', withAuth, async (req, res) => {
     try {
-      console.log("getting a comment")
-      const newComment = await Comment.findAll({
-        id:req.params.id,
+      const comments = await Comment.findAll({
+        postId:req.params.id,
       });
-  
-      res.status(200).json(newComment);
+ 
+      
+     const cleanComments = comments.map((comment) => comment.get({ plain: true }));
+     
+     console.log('comments testing', cleanComments)
+      res.render('singlePost', { 
+        cleanComments,
+      });
     } catch (err) {
+      console.log(err)
       res.status(400).json(err);
     }
   });
