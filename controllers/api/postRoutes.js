@@ -17,6 +17,7 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 router.delete('/:id', withAuth, async (req, res) => {
+  console.log("hit delete endpoint")
   try {
     const postData = await Post.destroy({
       where: {
@@ -34,6 +35,25 @@ router.delete('/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.put('/:id', withAuth, async (req, res) => {
+  console.log("post route hit", req.body)
+  try {
+      const postData = await Post.update(req.body, {
+        where:{id:req.params.id}
+
+      } )
+      // });
+  
+      // const posts = postData.put({ plain: true });
+      // res.render('editpost', {
+      //   posts,
+      // });
+    } catch (err) {
+      console.log("error", err)
+      res.status(500).json(err);
+    }
 });
 
 module.exports = router;

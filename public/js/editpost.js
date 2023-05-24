@@ -12,7 +12,7 @@ const updatepostHandler = async (event) => {
     const postbody = document.querySelector('#edit-post-body').value
 
     if (postTitle && postbody) {
-        const response = await fetch(`/post/${id}`, {
+        const response = await fetch(`/api/posts/${id}`, {
             method: 'PUT', 
             body: JSON.stringify({ title: postTitle, body: postbody }),
             headers: { 'Content-type': 'application/json' }
@@ -21,7 +21,7 @@ const updatepostHandler = async (event) => {
             document.location.replace('/dashboard')
         } else {
             console.log(response)
-            console.log('post post could not be deleted')
+            console.log('post could not be updated')
         }
     }
 }
@@ -30,7 +30,7 @@ const updatepostHandler = async (event) => {
 const deletepostHandler = async (event) => {
     event.preventDefault()
 console.log('clickedDel')
-    const response = await fetch(`/api/post/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE'
     })
 
@@ -50,4 +50,4 @@ document
 
     document
     .querySelector('#delete-post-button')
-    .addEventListener('submit', deletepostHandler);
+    .addEventListener('click', deletepostHandler);
